@@ -6,8 +6,8 @@ import "OpenZeppelin/openzeppelin-contracts@4.0.0/contracts/token/ERC20/ERC20.so
 import "OpenZeppelin/openzeppelin-contracts@4.0.0/contracts/utils/math/SafeCast.sol";
 
 contract BondingCurve is ERC20 {
-    uint32 inflectionPoint;
-    uint128 inflectionPrice;
+    uint32 inflectionPoint; // 1500; default value
+    uint128 inflectionPrice; // 102500000000000000; default value
     uint256 price;
     using SafeCast for uint256;
 
@@ -16,13 +16,13 @@ contract BondingCurve is ERC20 {
         inflectionPrice = _inflectionPrice;
     }
 
-    function mint(uint32 quantity) public  {
+    function mint(uint256 quantity) public  {
         uint256 avg_price = Sigmoid.sigmoid2Sum(inflectionPoint, inflectionPrice, totalSupply(), quantity);
         _mint(msg.sender, quantity);
         price = avg_price;
     }
 
-    function burn(uint32 quantity) public returns (uint256) {
+    function burn(uint256 quantity) public returns (uint256) {
         uint256 avg_price = Sigmoid.sigmoid2Sum(inflectionPoint, inflectionPrice, totalSupply(), quantity);
         _burn(msg.sender, quantity);
         price = avg_price;
