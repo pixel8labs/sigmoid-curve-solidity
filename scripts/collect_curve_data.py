@@ -12,12 +12,8 @@ def deploy_basic_contract(inflection_point, inflection_price):
     account = accounts[0]
     bonding_curve = BondingCurve.deploy(inflection_point, inflection_price,{"from": account})
 
-    bonding_curve.mint(1)
-    # Generate data for plotting
-    #x_values = list(range(1, 200))
     f = fibonacci_sequence(100) #use fibo sequence for minting token amount
     f = f[1:24] #skip the zero value
-    print (f)
     
     total_minted = 0 #previous mint amount
     y_values = []
