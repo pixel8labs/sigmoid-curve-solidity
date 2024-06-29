@@ -4,11 +4,11 @@ import mplcursors
 
 def plot_data():
     # Load first data set from file
-    with open('sigmoid_values_v2.json', 'r') as f:
+    with open('sigmoid_v2.json', 'r') as f:
         data = json.load(f)
     
-    x_values = data1['x']
-    y_values = data1['y']
+    x_values = data['x']
+    y_values = data['y']
 
     # Plot the data with grid
     fig, ax = plt.subplots()
