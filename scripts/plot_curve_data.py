@@ -4,7 +4,9 @@ import mplcursors
 
 def plot_data():
     # Load first data set from file
-    with open('sigmoid_v2.json', 'r') as f:
+
+    #with open('sigmoid_data_int.json', 'r') as f:
+    with open('data.json', 'r') as f:
         data = json.load(f)
     
     x_values = data['x']
