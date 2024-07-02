@@ -7,21 +7,21 @@ def plot_data():
     with open('sigmoid_data_int.json', 'r') as f:
         data = json.load(f)
     
-    x_values1 = data['cumulative_y']
+    x_values1 = [x / 1e6 for x in data['cumulative_y']]  # Scale down by 10^6
     y_values1 = data['x']
 
     # Load second data set from file
     with open('test_data.json', 'r') as f:
         data2 = json.load(f)
 
-    x_values2 = data2['x']
+    x_values2 = [x / 1e6 for x in data2['x']]  # Scale down by 10^6
     y_values2 = data2['y']
 
     # Plot the data with grid
     fig, ax = plt.subplots()
     ax.plot(x_values1, y_values1, label='Dataset 1', marker='o')
     ax.plot(x_values2, y_values2, label='Dataset 2', marker='x')
-    ax.set_xlabel('Fiat values injected (Dollar)')
+    ax.set_xlabel('Fiat/Dollar values injected')
     ax.set_ylabel('KUM Total Supply/Minted')
     ax.set_title('Comparison of Two Datasets')
     ax.grid(True)

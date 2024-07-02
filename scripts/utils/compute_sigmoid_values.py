@@ -17,6 +17,7 @@ def main():
     y_values = sigmoid(x_values, a, b, k, Z)
 
     # Compute the cumulative values (integral) of the sigmoid curve
+    y_values[0] = 0 #overwrite the first value
     cumulative_values = np.cumsum(y_values)
 
     # Convert to integer values (scale by 1e6 to keep precision, adjust as needed)
