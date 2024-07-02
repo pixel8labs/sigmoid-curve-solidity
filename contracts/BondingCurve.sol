@@ -132,7 +132,7 @@ contract BondingCurve is ERC20 {
             prevTokenPrice = getSigmoidValue(0); //min price
         }
         else {
-            prevTokenPrice = (_totalSupply - decimals*(prev_index))*getSigmoidValue(prev_index);
+            prevTokenPrice = (_totalSupply - prev_index*decimals)*getSigmoidValue(prev_index);
             prevTokenPrice = prevTokenPrice / decimals;
         }
         return prevTokenPrice;  

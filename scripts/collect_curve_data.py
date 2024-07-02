@@ -44,7 +44,7 @@ def deploy_basic_contract():
     for f in fiat_values:
         amount = abs(f)
         total_injected_fiat += f
-        print("Total injected fiat = ", total_injected_fiat/1e6, "f = ", f/1e6)
+        print("Total injected fiat = ", total_injected_fiat/1e6, "f = ", f/1e6, "supply = ",bonding_curve.getTotalSupply()/decimals)
         if f > 0: #positive values = mint
             bonding_curve.issueTokens(amount)
         elif f < 0: #negative values = burn
