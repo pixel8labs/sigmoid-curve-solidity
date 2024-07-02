@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import json
 
 def generate_bullish_wave_data(num_points,final_value):
     # Generate an upward trend with some corrective waves
@@ -35,6 +36,7 @@ def generate_bullish_wave_data(num_points,final_value):
     plt.show()
 
     # Save data to a JSON file
+    fiat_value = [int(x) for x in fiat_value]
     data = {'fiat_values':fiat_value}
     with open('fiat_value.json', 'w') as f:
         json.dump(data, f)

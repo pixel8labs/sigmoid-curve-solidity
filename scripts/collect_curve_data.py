@@ -8,33 +8,17 @@ def fibonacci_sequence(n):
         fib_seq.append(fib_seq[-1] + fib_seq[-2])
     return fib_seq[1:n]
 
-def generate_bullish_price_action(num_points, final_value):
-    # Generate an upward trend with some corrective waves
-    np.random.seed(42)
-    corrections = np.random.randn(num_points) + 0.5
-    price = np.cumsum(corrections)  # cumulative sum of corrections
-
-    # Normalize the sequence to reach the final value
-    price = price - price.min()  # shift to start at 0
-    price = price / price.max() * final_value  # scale to reach final_value
-
-    # Round the normalized price to integers
-    price = np.round(price).astype(int)
-
-    # Calculate differentials
-    differentials = np.diff(price)
-    return differentials
-
 def deploy_basic_contract():
     account = accounts[0]
     Sigmoid.deploy({"from": account})
     bonding_curve = BondingCurve.deploy({"from": account})
     
+    # Load first data set from file
+    with open('fiat_value.json', 'r') as f:
+        data = json.load(f)
+    
+    fiat_values = [x * 1e6 for x in data['fiat_values']]  # Scale up by 10^6
     #fiat_values = fibonacci_sequence(200) #use fibo sequence for minting token amount
-    data_points = 500
-    max_fiat_value = 175000
-    fiat_values = generate_bullish_price_action(data_points, max_fiat_value)  # Generate the wave pattern
-    fiat_values = fiat_values * 1e6 #price is scaled by 10^6
 
     total_injected_fiat = 0
     decimals = bonding_curve.getDecimals()
