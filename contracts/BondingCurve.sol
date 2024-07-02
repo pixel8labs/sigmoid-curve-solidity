@@ -122,6 +122,7 @@ contract BondingCurve is ERC20 {
     function getPrevPricePerToken(uint256 _totalSupply) public view returns (uint256) {
         uint256 decimals = 10**decimals();
         uint256 prev_index = _totalSupply / decimals; //need to round up i.e ceil function
+        uint256 prevTokenPrice;
         if (prev_index * decimals == _totalSupply && prev_index >= 1)
         {
             prev_index = prev_index - 1; //go to prev index

@@ -11,9 +11,10 @@ def main():
     b = 95
     k = 0.1
     a = 100
-
-    # Generate x values from 0 to 167
-    x_values = np.linspace(0, 167, 168)
+    
+    max_supply = 1000 #1000 KUM tokens
+    # Generate x values from 0 to max_supply
+    x_values = np.linspace(0, max_supply-1, max_supply)
     y_values = sigmoid(x_values, a, b, k, Z)
 
     # Compute the cumulative values (integral) of the sigmoid curve
@@ -22,7 +23,7 @@ def main():
 
     # Convert to integer values (scale by 1e6 to keep precision, adjust as needed)
     scale_factor = 1e6
-    x_values = np.linspace(0, 167, 168).astype(int).tolist()
+    x_values = np.linspace(0, max_supply-1, max_supply).astype(int).tolist()
     y_values_int = (y_values * scale_factor).astype(int).tolist()
     cumulative_values_int = (cumulative_values * scale_factor).astype(int).tolist()
 

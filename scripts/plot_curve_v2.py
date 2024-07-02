@@ -19,8 +19,8 @@ def plot_data():
 
     # Plot the data with grid
     fig, ax = plt.subplots()
-    ax.plot(x_values1, y_values1, label='Dataset 1', marker='o')
-    ax.plot(x_values2, y_values2, label='Dataset 2', marker='x')
+    ax.plot(x_values1, y_values1, label='Perfect Value of Bonding Curve (Sigmoid)', marker='o', color='blue')  # Blue line with markers
+    ax.plot(x_values2, y_values2, label='Computed Token Supply (Linear Interpolation)', marker='*', linestyle='None', color='red')  # Red asterisks, no line
     ax.set_xlabel('Fiat/Dollar values injected')
     ax.set_ylabel('KUM Total Supply/Minted')
     ax.set_title('Comparison of Two Datasets')
