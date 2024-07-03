@@ -42,11 +42,10 @@ def deploy_basic_contract():
     # Save data to a file
 
     # Convert to native Python types
-    x_values = [int(x) for x in x_values]
-    y_values = [int(y) for y in y_values]
+    x_values = [float(x) for x in x_values]
+    y_values = [float(y) for y in y_values]
 
     data = {'x': x_values, 'y': y_values}
-    print(data)
     with open('test_data.json', 'w') as d:
         json.dump(data, d)
 
