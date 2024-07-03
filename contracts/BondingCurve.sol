@@ -30,9 +30,9 @@ contract BondingCurve is ERC20 {
         uint256 index = totalSupply() / decimals; //perform integer division
         uint256 token_supply = totalSupply();
         while (remainingFiat > 0) {
-            if (index >= 167) //at price saturation range
+            if (index >= Sigmoid.maxIndex) //at price saturation range
             {
-                uint256 pricePerToken = getSigmoidValue(167);
+                uint256 pricePerToken = getSigmoidValue(Sigmoid.maxIndex);
                 uint256 fullTokens = remainingFiat / pricePerToken;
                 mint_amount += fullTokens * decimals;
                 remainingFiat -= fullTokens * pricePerToken;
@@ -43,7 +43,7 @@ contract BondingCurve is ERC20 {
                 break; //exit loop
             }
             else
-            { //index = 0 - 167, s-shaped curve
+            { //index = 0 - Sigmoid.maxIndex, s-shaped curve
                 uint256 nextPricePerToken = getNextPricePerToken(token_supply);
                 if (remainingFiat >= nextPricePerToken) {
                     mint_amount += (index+1)*decimals - token_supply; // Equivalent to 1 unit of token with 6 decimals
@@ -109,8 +109,8 @@ contract BondingCurve is ERC20 {
         uint256 decimals = 10**decimals();
         uint256 index = _totalSupply / decimals; //perform integer div. to get the lower bound index
         uint256 nextTokenPrice;
-        if (index > 167) {
-            nextTokenPrice = getSigmoidValue(167); //saturated price value
+        if (index > Sigmoid.maxIndex) {
+            nextTokenPrice = getSigmoidValue(Sigmoid.maxIndex); //saturated price value
         }
         else {
             nextTokenPrice = (decimals*(index+1) - _totalSupply)*getSigmoidValue(index+1);

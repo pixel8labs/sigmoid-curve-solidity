@@ -46,7 +46,6 @@ def deploy_basic_contract():
     y_values = [float(y) for y in y_values]
 
     data = {'x': x_values, 'y': y_values}
-    print(data)
     with open('test_data.json', 'w') as d:
         json.dump(data, d)
 
