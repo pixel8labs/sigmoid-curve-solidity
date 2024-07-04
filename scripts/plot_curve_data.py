@@ -17,10 +17,18 @@ def plot_data():
     x_values2 = [x / 1e6 for x in data2['x']]  # Scale down by 10^6
     y_values2 = data2['y']
 
+    # Load second data set from file
+    with open('curve_data.json', 'r') as f:
+        data3 = json.load(f)
+
+    x_values3 = [x / 1e6 for x in data3['x']]  # Scale down by 10^6
+    y_values3 = data3['y']
+
     # Plot the data with grid
     fig, ax = plt.subplots()
-    ax.plot(x_values1, y_values1, label='Perfect Value of Bonding Curve (Sigmoid)', marker='o', color='blue')  # Blue line with markers
-    ax.plot(x_values2, y_values2, label='Computed Token Supply (Linear Interpolation)', marker='*', linestyle='None', color='red')  # Red asterisks, no line
+    #ax.plot(x_values1, y_values1, label='Perfect Value of Bonding Curve (Sigmoid)', marker='o', color='blue')  # Blue line with markers
+    ax.plot(x_values2, y_values2, label='Computed Token Supply (Linear Interpolation)', marker='o', color='red')  # Red asterisks, no line
+    ax.plot(x_values3, y_values3, label='Computed Token Supply from Hardhat', marker='*', linestyle='None', color='green')  # Red asterisks, no line
     ax.set_xlabel('Fiat/Dollar values injected')
     ax.set_ylabel('KUM Total Supply/Minted')
     ax.set_title('Comparison of Two Datasets')
@@ -28,8 +36,8 @@ def plot_data():
     ax.legend()
 
     # Set plot range based on x_values1 * 2 and y_values1 * 2
-    ax.set_xlim(0, max(x_values1) * 2)
-    ax.set_ylim(0, max(y_values1) * 2)
+    #ax.set_xlim(0, max(x_values1) * 2)
+    #ax.set_ylim(0, max(y_values1) * 2)
 
     # Add interactive cursor
     cursor = mplcursors.cursor(ax, hover=True)
