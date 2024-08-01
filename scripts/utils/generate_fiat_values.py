@@ -20,16 +20,12 @@ def generate_bullish_wave_data(num_points,final_value):
 
     plt.subplot(2, 1, 1)
     plt.plot(price)
-    plt.title('Bullish Token Price Action with Corrective Waves')
-    plt.xlabel('Data Point')
-    plt.ylabel('Total injected fiat/dollar values')
+    plt.title('Cumulative Fiat/Dollar values Injected')
     plt.grid(True)
 
     plt.subplot(2, 1, 2)
-    plt.plot(fiat_value, color='orange')
-    plt.title('Fiat values injected (Burn / Mint)')
-    plt.xlabel('Data Point')
-    plt.ylabel('Fiat value')
+    plt.plot(fiat_value, marker='o', color='orange')
+    plt.title('Fiat values injected (Burn/Mint)')
     plt.grid(True)
 
     plt.tight_layout()
@@ -41,7 +37,7 @@ def generate_bullish_wave_data(num_points,final_value):
     with open('fiat_value.json', 'w') as f:
         json.dump(data, f)
 
-    print("Sigmoid integer data has been saved to sigmoid_data_int.json")
+    print("fiat data values has been saved to fiat_value.json")
 
 def main():
     # Parameters

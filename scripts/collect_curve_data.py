@@ -46,7 +46,7 @@ def deploy_basic_contract():
     y_values = [float(y) for y in y_values]
 
     data = {'x': x_values, 'y': y_values}
-    with open('test_data.json', 'w') as d:
+    with open('bond_curve_v2.json', 'w') as d:
         json.dump(data, d)
 
 def main():

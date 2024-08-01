@@ -8,11 +8,13 @@ def sigmoid(x, a, b, k, Z):
 def main():
     # Parameters
     Z = 0.1
-    b = 95
-    k = 0.1
+    #b = 95
+    #k = 0.1
+    b = 130
+    k = 0.098
     a = 100
     
-    max_supply = 1000 #1000 KUM tokens
+    max_supply = 10000 #table size
     # Generate x values from 0 to max_supply
     x_values = np.linspace(0, max_supply-1, max_supply)
     y_values = sigmoid(x_values, a, b, k, Z)
@@ -29,7 +31,7 @@ def main():
 
     # Save data to a JSON file
     data = {'x':x_values, 'y': y_values_int, 'cumulative_y': cumulative_values_int}
-    with open('sigmoid_data_int.json', 'w') as f:
+    with open('sigmoid_data_v2.json', 'w') as f:
         json.dump(data, f)
 
     print("Sigmoid integer data has been saved to sigmoid_data_int.json")
